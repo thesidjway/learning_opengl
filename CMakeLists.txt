@@ -10,3 +10,6 @@ include_directories(${GLEW_INCLUDE_DIRS})
 
 add_executable(Init src/Init.cpp)
 target_link_libraries(Init ${GLEW_LIBRARIES} glfw GL)
+
+add_executable(Shaders src/Shaders.cpp)
+target_link_libraries(Shaders ${GLEW_LIBRARIES} glfw GL)
