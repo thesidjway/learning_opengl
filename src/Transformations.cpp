@@ -27,7 +27,7 @@ layout (location = 0) in vec3 pos;											  \n\
 uniform mat4 model;                                                          \n\
 void main()                                                                   \n\
 {                                                                             \n\
-    gl_Position = model * vec4(0.4 * pos.x , 0.4 * pos.y, pos.z, 1.0);		          \n\
+    gl_Position = model * vec4(pos, 1.0);		          \n\
 }";
 
 // Fragment Shader
@@ -176,7 +176,7 @@ int main() {
       direction = !direction;
     }
 
-    curAngle += 0.1f;
+    curAngle += 0.5f;
 
     if (curAngle >= 360) {
       curAngle -= 360;
@@ -191,6 +191,7 @@ int main() {
     glm::mat4 model(1.0f);
     model = glm::translate(model, glm::vec3(triOffset, 0.0f, 0.0f));
     model = glm::rotate(model, curAngle * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+    model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
 
 //    glUniform1f(uniformXMove, triOffset);
     glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
